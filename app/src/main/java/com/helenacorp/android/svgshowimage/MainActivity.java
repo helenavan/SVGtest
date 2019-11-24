@@ -3,11 +3,13 @@ package com.helenacorp.android.svgshowimage;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ImageView imageViewRes;
     private ImageView imageViewNet;
+    private Button wv_btn,wv_btn_file;
     private RequestBuilder<PictureDrawable> requestBuilder;
 
     @Override
@@ -33,6 +36,22 @@ public class MainActivity extends AppCompatActivity {
 
         imageViewRes = (ImageView) findViewById(R.id.svg_image_view1);
         imageViewNet = (ImageView) findViewById(R.id.svg_image_view2);
+        wv_btn = findViewById(R.id.description);
+        wv_btn_file = findViewById(R.id.btn_wvLocalFile);
+        wv_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, GetmeanappActivity.class);
+                startActivity(intent);
+            }
+        });
+        wv_btn_file.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LocalHtmlActivity.class);
+                startActivity(intent);
+            }
+        });
 
         requestBuilder =
                 GlideApp.with(this)
